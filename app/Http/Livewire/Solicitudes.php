@@ -38,9 +38,9 @@ class Solicitudes extends Component
 
     public function mount()
     {
-        $this->restablecer();
-        $this-> ListDepartamentos = Departamento::all();
-         $this->BuscarPuestos = request()->query('BuscarPuestos', $this->BuscarPuestos);
+        $this   ->    restablecer();
+        $this   ->    ListDepartamentos = Departamento::all()->where('activo', 1);
+        $this   ->    BuscarPuestos = request()->query('BuscarPuestos', $this->BuscarPuestos);
 
                 // $this-> ListPuestos = Puesto::all();
 
@@ -93,17 +93,22 @@ class Solicitudes extends Component
     }
 
 
-    public function changeDepartamento()
+  
+  
+      public function changeDepartamento()
     {
         
-        {
-
-            $this-> ListDepartamentos = Departamento::all();
             // BUSCAREMOS TODO LOS PUESTOS CON EL CODIGO ID DEL DEPARTAMENTO
             $this->ListPuestos = Puesto::where('departamento_id',$this->departamento)
                                                 ->select('nombre')
                                                 ->where('activo', 1)
                                                 ->get();
+
+    }
+
+   
+}
+
 
         // EJEMPLO 1
         // $this->ListPuestos = DB::table('departamentos')
@@ -111,33 +116,9 @@ class Solicitudes extends Component
         // ->select('departamentos.nombre','puestos.nombre as cargos')
         // ->get();
 
-        // dd($this->ListPuestos);
-
-  
-      
+        // dd($this->ListPuestos)
 
         // dd($this->ListPuestos);
-
-
-
-
-
-
-        }
-
-    }
-
-    public function changePuesto()
-    {
-        
-        {
-          
-        }
-
-    }
-}
-
-
 
 // $users = DB::table('users')
 //             ->join('contacts', 'users.id', '=', 'contacts.user_id')

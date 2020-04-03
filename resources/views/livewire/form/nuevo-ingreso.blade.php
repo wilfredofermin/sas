@@ -51,7 +51,6 @@
         <input
           class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
           id="primerApellido" name='primerApellido' wire:model="primerApellido" type="text" placeholder="Doe">
-        <p class="text-red text-xs italic">Please fill out this field.</p>
       </div>
       <div class="md:w-1/2 px-3">
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">
@@ -63,15 +62,16 @@
       </div>
     </div>
     <div class="-mx-3 md:flex mb-6">
-      <span class="mr-0 mt-3">
-        <i class="fas fa-building"></i>
-      </span>
-      <div class="w-full px-3">
+      <div class="w-full px-3 md:w-1/3">
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+          DEPARTAMENTO
+        </label>
         <select name="departamento" wire:model="departamento" wire:keydown.enter="changeDepartamento"
           wire:keydown.page-down="changeDepartamento" {{-- wire:change="setSomeProperty($event.target.value) --}}
           wire:change="changeDepartamento" {{-- wire:click="cargarDepartamento" --}}
           class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-state">
+          <option value="" selected>SELECCIONE UN DEPARTAMENTO</option>
           @if(!empty($ListDepartamentos))
           @foreach($ListDepartamentos as $dept)
           <option value="{{ $dept->id }}">{{ $dept->nombre }}</option>
@@ -81,39 +81,36 @@
           @endif
         </select>
       </div>
-    </div>
-    <div class="-mx-3 md:flex mb-6">
-      <span class="mr-0 mt-3">
-        <i class="fas fa-building"></i>
-      </span>
-      <div class="w-full px-3">
-        <select name="puesto" {{-- wire:keydown.enter="changePuesto"
+      <div class="w-full px-3 md:w-1/3">
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+          PUESTO
+        </label>
+        <select name="puesto" wire:change="changeDepartamento" {{-- wire:keydown.enter="changePuesto"
           wire:keydown.page-down="changePuesto" {{-- wire:change="setSomeProperty($event.target.value) --}}
           class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-state">
+          {{-- <option value="" selected>SIN DATOS REGISTRADOS</option> --}}
           @if(!empty($ListPuestos))
           @foreach ($ListPuestos as $puesto)
-          <option value="{{$puesto->id}}">{{ $puesto->nombre }}</option>
+          <option value="{{$puesto->id}}" selected>{{ $puesto->nombre }}</option>
           {{-- <option value={{ $resultpuestos['nombre'] }}</option> --}}
           @endforeach
           @else
-          <option value="">SELECCIONE UN DEPARTAMENTO</option>
+          <option value="" selected>SIN DATOS REGISTRADOS</option>
           @endif
-
         </select>
       </div>
-    </div>
-    <div class="-mx-3 md:flex mb-6">
-      <span class="mr-0 mt-3">
-        <i class="fas fa-address-card"></i>
-      </span>
-      <div class="w-full px-3">
+      <div class="w-full px-3 md:w-1/3">
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+          SUPERVISOR
+        </label>
         <input
           class=" appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
           id="grid-first-name" name="supervisor" wire:model="supervisor" type="text" placeholder="Supervisor" disabled>
-        <p class="text-red text-xs italic">Please fill out this field.</p>
       </div>
+
     </div>
+
     {{-- <div class="-mx-3 md:flex mb-6">
     <span class="mr-0 mt-3">
       <i class="fas fa-diagnoses"></i>
