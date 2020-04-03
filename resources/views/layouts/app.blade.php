@@ -27,7 +27,7 @@
         class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-no-wrap md:justify-start flex items-center p-4">
         <div class="w-full mx-autp items-center flex justify-between md:flex-no-wrap flex-wrap md:px-10 px-4">
           <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold" href="./index.html">
-            <strong>Dasboard</strong> |
+            <strong>Dashboard</strong> |
             {{-- USUARIO LOGEADO --}}
             {{ Auth::user()->name }}</a>
 
@@ -42,12 +42,13 @@
         </div>
       </nav>
       {{-- FIN DEL MODULO - PERFIL DEL USUARIO --}}
-      <div class="relative bg-purple-400 md:pt-32 pb-32 pt-12">
+
+      <div class="relative bg-purple-400 md:pt-20 pb-32 pt-12">
         <div class="px-4 md:px-10 mx-auto w-full">
           <div>
 
             {{-- AQUI LOS CARD STATUS--}}
-            @include('assets.cardstatus')
+            {{-- @include('assets.cardstatus') --}}
             {{-- Fin card status --}}
 
           </div>
@@ -58,7 +59,7 @@
         <div class="flex flex-wrap">
           <div class="w-full xl:w-12/12 mb-12 xl:mb-0 px-4">
             <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-              <div class="rounded-t mb-0 px-4 py-3 border-0">
+              <div class="rounded-t mb-20 px-4 py-0 border-0">
                 <div class="flex flex-wrap items-center">
                   <div class="container mx-auto">
 

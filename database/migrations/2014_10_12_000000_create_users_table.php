@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\solicitud;
 
 class CreateUsersTable extends Migration
 {
@@ -23,6 +24,12 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
         });
+    }
+
+    // RELACION DE UNO A MUCHO - UN USUARIO PUEDE TENER MUCHAS SOLICITUDES
+    public function solicitudes()
+    {
+        return $this->hasMany(solicitud::class);
     }
 
     /**

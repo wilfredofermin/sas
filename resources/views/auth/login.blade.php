@@ -40,7 +40,7 @@
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="relative w-full mb-3">
-                    <label class="block uppercase text-red-500 text-xs font-bold mb-2"
+                    <label class="block uppercase text-red-200 text-xs font-bold mb-2"
                       for="grid-password">@error('username') <span
                         class="wrap-input100 ">{{ $message }}@enderror</label>
 
@@ -50,7 +50,7 @@
                   </div>
 
                   <div class="relative w-full mb-3">
-                    <label class="block uppercase text-red-500 text-xs font-bold mb-2"
+                    <label class="block uppercase text-red-200 text-xs font-bold mb-2"
                       for="grid-password">@error('password') <span
                         class="wrap-input100 ">{{ $message }}@enderror</label>
 
