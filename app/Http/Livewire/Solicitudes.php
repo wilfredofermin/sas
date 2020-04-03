@@ -29,7 +29,8 @@ class Solicitudes extends Component
     public  $tipoDocumento;
     public  $ListDepartamentos;
     public  $ListPuestos;
-    public  $puesto;
+    public  $ListSupervisores;
+    public  $inputPuesto;
   
    
 
@@ -40,7 +41,7 @@ class Solicitudes extends Component
     {
         $this   ->    restablecer();
         $this   ->    ListDepartamentos = Departamento::all()->where('activo', 1);
-        $this   ->    BuscarPuestos = request()->query('BuscarPuestos', $this->BuscarPuestos);
+        // $this   ->    BuscarPuestos = request()->query('BuscarPuestos', $this->BuscarPuestos);
 
                 // $this-> ListPuestos = Puesto::all();
 
@@ -59,19 +60,19 @@ class Solicitudes extends Component
         // $this-> modoNuevoIngreso = false;
         // $this-> modoEliminarIngreso = false;
 
-        $this-> solicitudes='';
-        $this-> BuscarPuestos =[];
-        $this-> puesto =[];
-        // $this-> departamento =[];
-        $this-> departamento = 'SELECCIONE UN DEPARTAMENTO';
-        $this-> ListPuestos =[];
-        $this-> ListDepartamentos =[];
-        $this-> tipoDocumento ="Cedula" ;
+        $this   ->   BuscarPuestos  =[];
+        $this   ->   solicitudes    ='';
+        $this   ->   departamento   = 'SELECCIONE UN DEPARTAMENTO';
+        $this   ->   ListPuestos    =[];
+        $this   ->   ListDepartamentos  =[];
+        $this   ->   ListSupervisores   =[];
+        $this   ->   inputPuesto    ='SIN DATOS QUE MOSTRAR';
+        $this   ->   tipoDocumento ="Cedula" ;
 
     }
     public function render()
     {
-        $this-> solicitudes = Solicitud::all();
+        $this   ->  solicitudes = Solicitud::all();
 
         // $this-> ListDepartamentos = Departamento::all();
 
@@ -101,10 +102,30 @@ class Solicitudes extends Component
             // BUSCAREMOS TODO LOS PUESTOS CON EL CODIGO ID DEL DEPARTAMENTO
             $this->ListPuestos = Puesto::where('departamento_id',$this->departamento)
                                                 ->select('nombre')
-                                                ->where('activo', 1)
+                                                 ->where('activo', 1)
                                                 ->get();
-
     }
+
+
+    public function changePuesto()
+    {
+
+
+
+        
+
+       // EJEMPLO 1
+            // $this->ListSupervisores = DB::table('supervisors')
+            //                         ->Join('puestos', 'supervisors.id','=', 'puestos.supervisor_id')
+            //                         ->select('supervisors.nombre as Encargado')
+            //                         ->get();   
+
+            //  dd($this->ListSupervisores);
+
+            //  $posts = App\Post::has('supervisors', '>=', 3)->get();
+    }
+
+
 
    
 }

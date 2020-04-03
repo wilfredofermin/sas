@@ -1,4 +1,4 @@
-<form>
+<form wire:submit.prevent="Enviar">
   <div class="bg-white shadow-md rounded mt-0 px-8 pt-10 pb-8 mb-4 flex-no-wrap flex-col my-2">
     <div class="-mx-3 md:flex mb-6">
       <div class="md:w-1/3 px-3 mb-6">
@@ -74,7 +74,7 @@
           <option value="" selected>SELECCIONE UN DEPARTAMENTO</option>
           @if(!empty($ListDepartamentos))
           @foreach($ListDepartamentos as $dept)
-          <option value="{{ $dept->id }}">{{ $dept->nombre }}</option>
+          <option value="{{ $dept->id }} selected">{{ $dept->nombre }}</option>
           @endforeach
           @else
           <option value="">SELECCIONE UN DEPARTAMENTO</option>
@@ -85,18 +85,17 @@
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
           PUESTO
         </label>
-        <select name="puesto" wire:change="changeDepartamento" {{-- wire:keydown.enter="changePuesto"
-          wire:keydown.page-down="changePuesto" {{-- wire:change="setSomeProperty($event.target.value) --}}
+        <select name="puesto"
           class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           id="grid-state">
-          {{-- <option value="" selected>SIN DATOS REGISTRADOS</option> --}}
           @if(!empty($ListPuestos))
-          @foreach ($ListPuestos as $puesto)
-          <option value="{{$puesto->id}}" selected>{{ $puesto->nombre }}</option>
-          {{-- <option value={{ $resultpuestos['nombre'] }}</option> --}}
+          @foreach ($ListPuestos as $itemP)
+          {{-- <option value="{{$itemP->id}}" selected>{{ $itemP->nombre }}</option> --}}
+          <option value="{{$itemP->id}} selected">{{ $itemP->nombre }}</option>
+          {{-- <option value={{ $itemP['id'] }} selected>{{ $itemP['nombre'] }}</option> --}}
           @endforeach
           @else
-          <option value="" selected>SIN DATOS REGISTRADOS</option>
+          <option value="">.........</option>
           @endif
         </select>
       </div>
@@ -106,7 +105,8 @@
         </label>
         <input
           class=" appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-          id="grid-first-name" name="supervisor" wire:model="supervisor" type="text" placeholder="Supervisor" disabled>
+          id="grid-first-name" name="supervisor" wire:model="inputSupervisor" type="text" placeholder="Supervisor"
+          disabled>
       </div>
 
     </div>
