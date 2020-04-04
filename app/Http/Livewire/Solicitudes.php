@@ -20,24 +20,30 @@ use Auth;
 
 class Solicitudes extends Component
 {
-
+    // VISTAS
     public  $modoHome;
     public  $modoNuevoIngreso;
     public  $modoEliminarIngreso;
+
+    // INPUTS
     public  $solicitudes;
-    public  $BuscarPuestos;
-    public  $cedula;
+    public  $documento;
+    public  $supervisor;
+    public  $nombre;
+    public  $primerApellido;
+    public  $segundoApellido;
+    public  $Sn;
     public  $departamento;
     public  $tipoDocumento;
+
+    // FUNCIONES
+    public  $BuscarPuestos;
     public  $ListDepartamentos;
     public  $ListPuestos;
     public  $ListLocalidades;
-    public  $inputSupervisor;
-    public  $inputLocalidades;
-    public  $inputPuesto;
-    public  $inputSupervisores;
-    public  $inputNombre;
-    public  $inputSn;
+    public  $usuario;
+
+ 
   
    
 
@@ -48,16 +54,7 @@ class Solicitudes extends Component
     {
         $this   ->    restablecer();
         $this   ->    ListDepartamentos = Departamento::all()->where('activo', 1);
-        // $this   ->    BuscarPuestos = request()->query('BuscarPuestos', $this->BuscarPuestos);
-
-                // $this-> ListPuestos = Puesto::all();
-
-
-
-        //    $this->ListPuestos = Puesto::where('departamento_id',4)->select('nombre')->get();
-
-        //     $this-> ListDepartamentos = Departamento::where('id',4)->select('nombre')->get();
-
+        $this   ->    usurio = Auth::user();
 
     }
 
@@ -66,47 +63,59 @@ class Solicitudes extends Component
         // $this-> modoHome = true;
         // $this-> modoNuevoIngreso = false;
         // $this-> modoEliminarIngreso = false;
-
-        $this   ->   BuscarPuestos              =[];
-        $this   ->   solicitudes                ='';
-        $this   ->   departamento               = 'SELECCIONE UN DEPARTAMENTO';
+    
         $this   ->   ListPuestos                =[];
         $this   ->   ListLocalidades            =[];
         $this   ->   ListDepartamentos          =[];
         $this   ->   ListSupervisores           =[];
-        $this   ->   inputPuesto                ='SIN DATOS QUE MOSTRAR';
-        $this   ->   inputSupervisor            ="";
-        $this   ->   inputNombre                ="";
         $this   ->   tipoDocumento              ="Cedula" ;
-        $this   ->   inputSn                    ="" ;
+        $this   ->   solicitudes                ='';
+        $this   ->   docuento                   ="" ;
+        $this   ->   nombre                     ="" ;
+        $this   ->   sn                         ="" ;
+        $this   ->   primerApellido             ="" ;
+        $this   ->   segundoApellido            ="" ;
+        $this   ->   departamento               =[];
+        $this   ->   puesto                     ="" ;
+        $this   ->   localidad                  ="" ;
+        $this   ->   supervisor                 ="" ;
 
     }
+
+    public function submit()
+    {
+        $this->validate([
+            'documento'                 => 'required|min:11|max:11',
+            'nombre'                    => 'required|min:6',
+            'primerApellido'            => 'required|min:6',
+            'departamento'              => 'required|min:6',
+            'supervisor'                => 'required|email|min:10',
+          
+        ]);
+
+        // Execution doesn't reach here if validation fails.
+
+        Contact::create([
+            'documento'                 => $this->documento,
+            'nombre'                    => $this->nombre,
+            'primerApellido'            => $this->primerApellido,
+            'departamento'              => $this->departamento,
+            'supervisor'                => $this->supervisor,
+
+           
+        ]);
+    }
+
+
     public function render()
     {
         $this   ->  solicitudes = Solicitud::all();
 
-        // $this-> ListDepartamentos = Departamento::all();
+                    return view('livewire.solicitudes');
 
+    }
 
-
-            // 'puestos' => Puesto::where('nombre', 'like', '%'.$this->search.'%')->get(),
-            // $this->BuscarPuestos = Puesto::where('departamento_id',4)
-            //                                     ->select('nombre')
-            //                                     ->get();
     
-
-                return view('livewire.solicitudes');
-    }
-
-    public function store()
-    {
-        # code...
-        $this->modoHome = false;
-    }
-
-
-  
-  
       public function changeDepartamento()
     {
         
@@ -118,11 +127,7 @@ class Solicitudes extends Component
 
             //  SELECCIONAR TODAS LAS LOCALIDADES ACTIVAS                                   
             $this->ListLocalidades = Localidad::all()->where('activo', 1);
-                
-
-
-                
-
+  
         //  dd($this->ListSupervisores);
     }
 
@@ -204,3 +209,13 @@ class Solicitudes extends Component
                 // // $post = Post::find(1);
                 // // $comments = $post->comments;
                 // dd($supervior);
+
+                    // $this-> ListDepartamentos = Departamento::all();
+
+
+
+            // 'puestos' => Puesto::where('nombre', 'like', '%'.$this->search.'%')->get(),
+            // $this->BuscarPuestos = Puesto::where('departamento_id',4)
+            //                                     ->select('nombre')
+            //                                     ->get();
+    

@@ -45,7 +45,7 @@
                         class="wrap-input100 ">{{ $message }}@enderror</label>
 
                     <input type="text"
-                      class="px-3 py-3 @error('username')border border-red-500 @enderror rounded placeholder-gray-400 text-purple-400 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                      class="px-3 py-3 @error('username')border border-red-500 @enderror rounded placeholder-gray-400 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                       placeholder="Usuario" name="username" id="username" style="transition: all 0.15s ease 0s;" />
                   </div>
 
@@ -55,7 +55,7 @@
                         class="wrap-input100 ">{{ $message }}@enderror</label>
 
                     <input type="password"
-                      class="px-3 py-3 @error('password') border border-red-500 @enderror rounded placeholder-gray-400 text-purple-400 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
+                      class="px-3 py-3 @error('password') border border-red-500 @enderror rounded placeholder-gray-400 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                       placeholder="Password" id="password" name="password" style="transition: all 0.15s ease 0s;" />
                   </div>
                   <div>
