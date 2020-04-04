@@ -11,5 +11,10 @@ class Puesto extends Model
     {
         return $this->belongsTo(Departamento::class);
     }
+
+     public function supervisores()
+    {
+        return $this->belongsTo(Supervisor::class);
+    }
 }
 

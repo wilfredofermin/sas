@@ -1,6 +1,8 @@
 <form wire:submit.prevent="Enviar">
   <div class="bg-white shadow-md rounded mt-0 px-8 pt-10 pb-8 mb-4 flex-no-wrap flex-col my-2">
     <div class="-mx-3 md:flex mb-6">
+    </div>
+    <div class="-mx-3 md:flex mb-6">
       <div class="md:w-1/3 px-3 mb-6">
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
           Documento
@@ -23,15 +25,13 @@
         </select>
         <p class="text-red text-xs italic">@error('cedula') <span class="error">{{ $message }}</span> @enderror</p>
       </div>
-    </div>
-    <div class="-mx-3 md:flex mb-6">
       <div class="md:w-full px-3 mb-6 md:mb-0">
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
           Nombre
         </label>
         <input
-          class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-          id="nombres" name='nombre' wire:model="nombre" type="text" placeholder="Jane">
+          class="appearance-none uppercase block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+          id="inputNombre" name='inputNombre' wire:model="inputNombre" type="text" placeholder="Jane">
         <p class="text-red text-xs italic">@error('nombres') <span class="error">{{ $message }}</span> @enderror</p>
       </div>
       <div class="md:w-1/6 px-3">
@@ -39,8 +39,8 @@
           S/N *
         </label>
         <input
-          class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
-          id="sn" name='sn' wire:model="sn" type="text" placeholder="J">
+          class="appearance-none uppercase block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          id="inputSn" name='inputSn' wire:model="inputSn" type="text" placeholder="J">
       </div>
     </div>
     <div class="-mx-3 md:flex mb-6">
@@ -49,7 +49,7 @@
           Primer Apellido
         </label>
         <input
-          class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+          class="appearance-none uppercase block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
           id="primerApellido" name='primerApellido' wire:model="primerApellido" type="text" placeholder="Doe">
       </div>
       <div class="md:w-1/2 px-3">
@@ -57,7 +57,7 @@
           Segundo Apellido *
         </label>
         <input
-          class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          class="appearance-none uppercase block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
           id="grid-last-name" type="text" wire:model="segundoApellido" placeholder="Jackson">
       </div>
     </div>
@@ -101,14 +101,37 @@
       </div>
       <div class="w-full px-3 md:w-1/3">
         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
-          SUPERVISOR
+          LOCALIDAD
         </label>
-        <input
-          class=" appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
-          id="grid-first-name" name="supervisor" wire:model="inputSupervisor" type="text" placeholder="Supervisor"
-          disabled>
+        <select name="localidad"
+          class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          id="grid-state">
+          @if(!empty($ListLocalidades))
+          @foreach ($ListLocalidades as $itemL)
+          {{-- <option value="{{$itemP->id}}" selected>{{ $itemP->nombre }}</option> --}}
+          <option value="{{$itemL->id}} selected">{{ $itemL->nombre }}</option>
+          {{-- <option value={{ $itemP['id'] }} selected>{{ $itemP['nombre'] }}</option> --}}
+          @endforeach
+          @else
+          <option value="">.........</option>
+          @endif
+        </select>
       </div>
 
+    </div>
+    <div class="-mx-3 md:flex mb-6">
+      <div class="md:w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-first-name">
+          SUPERVISOR | CORREO ELECTRONICO
+        </label>
+        <input
+          class="appearance-none lowercase block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+          id="cedula" name='supervisor' wire:model="inputSupervisor" type="email"
+          placeholder="Intruduzca el correo del supervisior">
+
+        <p class="text-red text-xs italic">@error('supervisor') <span class="error">{{ $message }}</span></p>
+        @enderror</span>
+      </div>
     </div>
 
     {{-- <div class="-mx-3 md:flex mb-6">

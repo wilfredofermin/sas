@@ -7,6 +7,8 @@ use Livewire\Component;
 use App\Solicitud;
 use App\Departamento;
 use App\Puesto;
+use App\Supervisor;
+use App\Localidad;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Requestinput;
@@ -29,8 +31,13 @@ class Solicitudes extends Component
     public  $tipoDocumento;
     public  $ListDepartamentos;
     public  $ListPuestos;
-    public  $ListSupervisores;
+    public  $ListLocalidades;
+    public  $inputSupervisor;
+    public  $inputLocalidades;
     public  $inputPuesto;
+    public  $inputSupervisores;
+    public  $inputNombre;
+    public  $inputSn;
   
    
 
@@ -60,14 +67,18 @@ class Solicitudes extends Component
         // $this-> modoNuevoIngreso = false;
         // $this-> modoEliminarIngreso = false;
 
-        $this   ->   BuscarPuestos  =[];
-        $this   ->   solicitudes    ='';
-        $this   ->   departamento   = 'SELECCIONE UN DEPARTAMENTO';
-        $this   ->   ListPuestos    =[];
-        $this   ->   ListDepartamentos  =[];
-        $this   ->   ListSupervisores   =[];
-        $this   ->   inputPuesto    ='SIN DATOS QUE MOSTRAR';
-        $this   ->   tipoDocumento ="Cedula" ;
+        $this   ->   BuscarPuestos              =[];
+        $this   ->   solicitudes                ='';
+        $this   ->   departamento               = 'SELECCIONE UN DEPARTAMENTO';
+        $this   ->   ListPuestos                =[];
+        $this   ->   ListLocalidades            =[];
+        $this   ->   ListDepartamentos          =[];
+        $this   ->   ListSupervisores           =[];
+        $this   ->   inputPuesto                ='SIN DATOS QUE MOSTRAR';
+        $this   ->   inputSupervisor            ="";
+        $this   ->   inputNombre                ="";
+        $this   ->   tipoDocumento              ="Cedula" ;
+        $this   ->   inputSn                    ="" ;
 
     }
     public function render()
@@ -101,18 +112,47 @@ class Solicitudes extends Component
         
             // BUSCAREMOS TODO LOS PUESTOS CON EL CODIGO ID DEL DEPARTAMENTO
             $this->ListPuestos = Puesto::where('departamento_id',$this->departamento)
-                                                ->select('nombre')
+                                                // ->select('nombre',)
                                                  ->where('activo', 1)
                                                 ->get();
+
+            //  SELECCIONAR TODAS LAS LOCALIDADES ACTIVAS                                   
+            $this->ListLocalidades = Localidad::all()->where('activo', 1);
+                
+
+
+                
+
+        //  dd($this->ListSupervisores);
     }
 
 
     public function changePuesto()
     {
 
+                foreach ($this->ListPuestos as $key) {
+                    # code..
+                    $key->supervisor_id;
+
+                }
+                 $this->ListSupervisores = Supervisor::where('id',$key->supervisor_id)
+                                                ->get();
+                                               
+                                                //  ->where('activo', 1->get();
 
 
         
+
+    }
+
+
+
+   
+}
+
+
+
+
 
        // EJEMPLO 1
             // $this->ListSupervisores = DB::table('supervisors')
@@ -123,13 +163,6 @@ class Solicitudes extends Component
             //  dd($this->ListSupervisores);
 
             //  $posts = App\Post::has('supervisors', '>=', 3)->get();
-    }
-
-
-
-   
-}
-
 
         // EJEMPLO 1
         // $this->ListPuestos = DB::table('departamentos')
@@ -163,3 +196,11 @@ class Solicitudes extends Component
 //                 // alguna otra acción
 //             });
 //         });
+
+
+                // $data = Puesto::find(1);
+                // $supervior = $data->supervisores;
+
+                // // $post = Post::find(1);
+                // // $comments = $post->comments;
+                // dd($supervior);

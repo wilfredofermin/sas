@@ -2,7 +2,7 @@
     <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
         <!--header-->
         <div class="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-            <h3 class="text-3xl uppercase font-semibold">
+            <h3 class="text-1xl uppercase font-semibold">
                 SOLICITUD - NUEVO INGRESO
             </h3>
         </div>
@@ -15,7 +15,7 @@
         <!--footer-->
         <div class="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
             <button
-                class="w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                class="w-32 bg-white tracking-wide text-gray-800 font-bold rounded border-b-2 border-blue-500 hover:border-blue-600 hover:bg-blue-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                 <span class="mx-auto"><i class="fas fa-arrow-left"></i>Vover</span>
             </button>
             <button type="submit"
