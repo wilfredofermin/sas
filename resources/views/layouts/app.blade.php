@@ -79,8 +79,8 @@
           <div class="container mx-auto px-4">
             <hr class="mb-4 border-b-1 border-gray-300" />
             <div class="flex flex-wrap items-center md:justify-between justify-center">
-              <div class="w-full md:w-4/12 px-4">
-                <div class="text-sm text-gray-600 font-semibold py-1">
+              <div class="w-full md:w-full px-4">
+                <div class="text-sm text-gray-600 font-semibold mx-auto">
                   Copyright © <span id="javascript-date"></span>
                   <a href="https://www.viva.com.do"
                     class="text-gray-600 hover:text-gray-800 text-sm font-semibold py-1">
@@ -95,6 +95,11 @@
     </div>
   </div>
   @include('sweet::alert')
+  <script>
+
+
+  </script>
+
   <livewire:scripts>
 </body>
 

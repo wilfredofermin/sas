@@ -30,15 +30,11 @@
                                     class="error">{{ $message }}</span> @enderror</p>
                         </div>
                         <div class="md:w-1/3 px-3 mb-6">
-                            <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-                                for="grid-first-name">
-                                Tipo Documento
-                            </label>
                             <select name="tipoDocumento" wire:model="tipoDocumento"
                                 class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-state">
-                                <option>Cedula</option>
-                                <option>Pasaporte</option>
+                                id="cedula">
+                                <option value="Cedula">Cedula 1</option>
+                                <option value="pasaporte">Pasaporte</option>
                             </select>
                         </div>
                         <div class="md:w-full px-3 mb-6 md:mb-0">
@@ -82,7 +78,7 @@
                                 Segundo Apellido [<small class="lowercase">opcional</small>]
                             </label>
                             <input
-                                class="appearance-none uppercase block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                                class=" uppercase block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
                                 id="grid-last-name" type="text" name="segundoApellido" wire:model="segundoApellido"
                                 placeholder="Jackson">
                         </div>
@@ -95,14 +91,13 @@
                             </label>
                             <select name="departamento" wire:model="departamento"
                                 wire:keydown.enter="changeDepartamento" wire:keydown.page-down="changeDepartamento"
-                                {{-- wire:change="setSomeProperty($event.target.value) --}}
-                                wire:change="changeDepartamento" {{-- wire:click="cargarDepartamento" --}}
-                                class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                wire:change="changeDepartamento"
+                                class="block   w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="departamento">
                                 <option value="" selected>SELECCIONE UN DEPARTAMENTO</option>
                                 @if(!empty($ListDepartamentos))
                                 @foreach($ListDepartamentos as $dept)
-                                <option value="{{ $dept->id }} selected">{{ $dept->nombre }}</option>
+                                <option value={{ $dept->nombre }}> {{ $dept->nombre }}</option>
                                 @endforeach
                                 @else
                                 <option value="">SELECCIONE UN DEPARTAMENTO</option>
@@ -118,16 +113,14 @@
                                 PUESTO
                             </label>
                             <select name="puesto"
-                                class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                wire:model="puesto"
+                                class="block w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-state">
                                 @if(!empty($ListPuestos))
                                 @foreach ($ListPuestos as $itemP)
-                                {{-- <option value="{{$itemP->id}}" selected>{{ $itemP->nombre }}</option> --}}
-                                <option value="{{$itemP->id}} selected">{{ $itemP->nombre }}</option>
-                                {{-- <option value={{ $itemP['id'] }} selected>{{ $itemP['nombre'] }}</option> --}}
+                                <option value={{$itemP->nombre}}>{{ $itemP->nombre }}</option>
                                 @endforeach
                                 @else
-                                <option value="">.........</option>
                                 @endif
                             </select>
                         </div>
@@ -137,12 +130,12 @@
                                 LOCALIDAD
                             </label>
                             <select name="localidad"
-                                class="block  appearance-none w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                class="block w-full bg-gray-200 border uppercase border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-state">
                                 @if(!empty($ListLocalidades))
                                 @foreach ($ListLocalidades as $itemL)
                                 {{-- <option value="{{$itemP->id}}" selected>{{ $itemP->nombre }}</option> --}}
-                                <option value="{{$itemL->id}} selected">{{ $itemL->nombre }}</option>
+                                <option value={{ $itemL->nombre }}>{{ $itemL->nombre }}</option>
                                 {{-- <option value={{ $itemP['id'] }} selected>{{ $itemP['nombre'] }}</option> --}}
                                 @endforeach
                                 @else
@@ -159,7 +152,7 @@
                                 SUPERVISOR | CORREO ELECTRONICO
                             </label>
                             <input
-                                class="appearance-none lowercase block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
+                                class=" lowercase block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3"
                                 id="supervisor" name='supervisor' wire:model="supervisor" type="email"
                                 placeholder="Intruduzca el correo del supervisior">
                             <p class="text-red text-xs italic">@error('supervisor') <span

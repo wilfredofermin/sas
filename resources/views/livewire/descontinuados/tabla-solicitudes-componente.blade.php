@@ -6,6 +6,11 @@
                 Solicitudes
             </h1>
         </div>
+        @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+        @endif
     </div>
 
     <div class="flex flex-row-reverse mt-5 right-0">
@@ -28,7 +33,7 @@
             <tr class="text-left text-grey-darkest bg-grey-lighter border-b border-grey uppercase mb-5">
                 <th>Nombre</th>
                 <th>Documento</th>
-                <th>Solcitud</th>
+                <th>Solicitud</th>
                 <th>Estado</th>
                 <th>Fecha</th>
                 <th>Opciones</th>
@@ -37,7 +42,7 @@
 
             <tr class="border-b border-grey-light hover:bg-purple-300 bg-gray-100 ">
                 <td>
-                    <p class="pb-2 font-sans text-lg text-gray-800">{{$item->primerNombre}}</p>
+                    <p class="pb-2 font-sans text-lg text-gray-800">{{$item->nombre}}</p>
                     <p class="text-sm text-grey font-semibold">{{$item->primerApellido}}</p>
                 </td>
                 <td>
@@ -53,7 +58,7 @@
                     <p class="text-sm text-grey font-semibold">{{$item->estado}}</p>
                 </td>
                 <td>
-                    <p class="font-sans text-lg text-gray-800">{{$item->timestamp}}</p>
+                    <p class="font-sans text-lg text-gray-800">{{$item->created_at}}</p>
                 </td>
                 <td>
                     <svg class="h-12 ml-8 w-6 fill-current text-grey-dark" xmlns="http://www.w3.org/2000/svg"

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\departamento;
+use App\Departamento;
 
 class departamentoSeeder extends Seeder
 {
@@ -14,15 +14,23 @@ class departamentoSeeder extends Seeder
     public function run()
     {
         //
-          $faker = Faker\Factory::create();
-
-        for ($i = 0; $i < 10; $i++) {
-             DB::table('departamentos')->insert([
-             'nombre' => $faker->bs,
-            'Descripcion'  => $faker->catchPhrase ,
-           
+        // 
+          DB::table('departamentos')->insert([
+            'nombre'     => 'Tecnologia',
+            'descripcion' =>"",
         ]);
-            
-        }
+          DB::table('departamentos')->insert([
+            'nombre'     => 'Mercadeo',
+            'descripcion' =>"",
+        ]);
+          DB::table('departamentos')->insert([
+            'nombre'     => 'Contabilidad',
+            'descripcion' =>"",
+        ]);
+          DB::table('departamentos')->insert([
+            'nombre'     => 'Operaciones',
+            'descripcion' =>"",
+        ]);
+
     }
 }

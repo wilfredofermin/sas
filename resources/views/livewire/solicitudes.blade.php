@@ -2,7 +2,8 @@
     {{-- INICIO      --}}
 
     @if($modoHome)
-    @include('livewire.tabla-solicitudes-componente')
+    {{-- @include('livewire.tabla-solicitudes-componente') --}}
+    @include('livewire.tb-solicitudes-component')
     @else
     @include('livewire.nuevo-ingreso-component')
     @endif

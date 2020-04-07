@@ -15,16 +15,21 @@ class CreateSolicitudsTable extends Migration
     {
         Schema::create('solicituds', function (Blueprint $table) {
             $table->id();
-            $table->integer('servicekit_id');
-            $table->string('tipoDocumento')->default('Cedula');
-            $table->string('estado')->default('Open');
-            $table->string('prioridad')->default('Normal');
+            $table->integer('servicekit_id')->nullable();
             $table->string('documento',11);
-            $table->string('primerNombre', 100);
-            $table->string('segundoNombre', 100)->nullable();
+            $table->string('tipoDocumento')->default('Cedula');
+            $table->string('nombre', 100);
+            $table->string('sn', 100)->nullable();
             $table->string('primerApellido', 100);
             $table->string('segundoApellido', 100)->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->string('estado')->default('Open');
+            $table->string('prioridad')->default('Normal');
+            $table->string('departamento',150)->nullable();
+            $table->string('puesto',150)->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('supervisor',150);
+            $table->string('registradoPor');
+            // $table->interger('user_id')->constrained()->nullable();
             // USUARIO QUIEN HACE LA SOLICITUD
             // $table->foreign('user_id')->references('id')->on('users');
 
